@@ -18,9 +18,10 @@ class WorkersTest extends \PHPUnit\Framework\TestCase
             ->getMock();
 
         $this->worker = new Workers($this->beanstalk, '');
-        $this->worker->addRules('default', $this->ini_file, ['minimum_jobs' => 0, 'required_workers' => 1]);
-        $this->worker->addRules('default', $this->ini_file, ['minimum_jobs' => 5, 'required_workers' => 3]);
-        $this->worker->addRules('default', $this->ini_file, ['minimum_jobs' => 10, 'required_workers' => 5]);
+        $this->worker->addIniFile('default', $this->ini_file);
+        $this->worker->addRules('default', ['minimum_jobs' => 0, 'required_workers' => 1]);
+        $this->worker->addRules('default', ['minimum_jobs' => 5, 'required_workers' => 3]);
+        $this->worker->addRules('default', ['minimum_jobs' => 10, 'required_workers' => 5]);
     }
 
     public function testWorkersDecrease()

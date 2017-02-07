@@ -24,7 +24,7 @@ class Workers
         $this->supervisor_ctl = $supervisor_ctl;
     }
 
-    public function addRules($tube, $ini_file, $rules)
+    public function addIniFile($tube, $ini_file)
     {
         if ( ! isset($this->rules[$tube])) {
             $this->rules[$tube] = [
@@ -34,6 +34,17 @@ class Workers
         };
 
         $this->rules[$tube]['ini_file'] = $ini_file;
+    }
+
+    public function addRules($tube, $rules)
+    {
+        if ( ! isset($this->rules[$tube])) {
+            $this->rules[$tube] = [
+                'ini_file' => '',
+                'rules' => [],
+            ];
+        };
+
         $this->rules[$tube]['rules'][] = $rules;
     }
 

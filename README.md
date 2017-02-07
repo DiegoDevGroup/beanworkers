@@ -12,8 +12,9 @@ Usage is simple, but there are assumptions made.   Please ensure you have a back
 ```
 $pheanstalk = new \Pheanstalk\Pheanstalk("$host:$port");
 $worker = new Supervisord\Beanstalkd\Workers($pheanstalk, '/usr/bin/supervisorctl');
-$worker->addRules('default', '/etc/supervisord.d/default.ini', ['minimum_jobs' => 0, 'required_workers' => 1]);
-$worker->addRules('default', '/etc/supervisord.d/default.ini', ['minimum_jobs' => 10, 'required_workers' => 3]);
+$worker->addIniFile('default', '/etc/supervisord.d/default.ini');
+$worker->addRules('default', ['minimum_jobs' => 0, 'required_workers' => 1]);
+$worker->addRules('default', ['minimum_jobs' => 10, 'required_workers' => 3]);
 $worker->run();
 ```
 
