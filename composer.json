@@ -1,0 +1,21 @@
+{
+    "name": "diegodevgroup/beanworkers",
+    "description": "A way to dynamically control the number of processes that Supervisord will have running at any given time",
+    "require": {
+        "php": ">=5.3.0",
+        "pda/pheanstalk": "^3.1"
+    },
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "John Congdon",
+            "email": "john@diegodev.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Supervisord\\": "src/"
+        }
+    }
+}
