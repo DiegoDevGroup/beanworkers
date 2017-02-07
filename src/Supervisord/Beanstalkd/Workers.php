@@ -40,6 +40,7 @@ class Workers
     public function run()
     {
         $tubes = $this->beanstalk->listTubes();
+        $update_happened = false;
         foreach ($tubes as $tube)
         {
             $stats = $this->beanstalk->statsTube($tube);
@@ -48,7 +49,11 @@ class Workers
             if ($this->num_proc_adjustment && $this->supervisor_ctl) {
                 `{$this->supervisor_ctl} update $tube`;
             }
+            if ($this->num_proc_adjustment) {
+                $update_happened = true;
+            }
         }
+        return $update_happened;
     }
 
     protected function adjustWorkers($tube, $stats)
